@@ -15,8 +15,8 @@ class HSqlDbTest extends JUnitSuite {
   }
 
   @Test def testH2Connect() {
-    Class.forName("org.h2.Driver")
-    val c = DriverManager.getConnection("jdbc:h2:mem:")
+    Class.forName("org.hsqldb.jdbc.JDBCDriver")
+    val c = DriverManager.getConnection("jdbc:hsqldb:mem:testdb")
     c.close()
   }
 }
