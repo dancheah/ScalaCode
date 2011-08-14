@@ -1,3 +1,5 @@
+package q99
+
 object P1 {
     def last(l: List[Int]): Int = {
         if (l.tail == List()) {

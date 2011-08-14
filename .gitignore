@@ -1,1 +1,7 @@
 *.class
+*.jar
+.idea
+.idea_modules
+project/boot
+project/plugins/target
+target

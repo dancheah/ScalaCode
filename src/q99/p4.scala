@@ -1,3 +1,5 @@
+package q99
+
 object P4 {
     // This is a very lispish style
     def length(l: List[Any]): Int = {
