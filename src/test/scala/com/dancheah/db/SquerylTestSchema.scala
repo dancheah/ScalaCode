@@ -10,14 +10,17 @@ import org.squeryl.PrimitiveTypeMode._
  * Time: 6:09 PM
  */
 
-class Author(val id: Long,
+// psql doesn't like when I use upper case characters
+// in the table name. Switching scala class to be
+// all lower case because of this.
+class author(val id: Long,
 	           val firstName: String,
 	           val lastName: String,
 	           val email: Option[String]) extends KeyedEntity[Long] {
   def this() = this(0, "", "", Some(""))
 }
 
-class Book(val id: Long,
+class book(val id: Long,
            val title: String,
            val authorId: Long,
            val coAuthorId: Option[Long]) extends KeyedEntity[Long] {
@@ -25,9 +28,9 @@ class Book(val id: Long,
 }
 
 object SquerylTestSchema extends Schema {
-  val authors = table[Author]
+  val authors = table[author]
 
-  val books = table[Book]
+  val books = table[book]
 
   def populateTestData() {
     // Create a sample table
@@ -35,15 +38,15 @@ object SquerylTestSchema extends Schema {
       drop
       create
 
-      authors.insert(new Author(1, "JRR", "Tolkien", None))
-      authors.insert(new Author(2, "Jane", "Austen", None))
-      authors.insert(new Author(3, "Philip", "Pullman", None))
-      authors.insert(new Author(4, "Test", "Author", None))
+      authors.insert(new author(1, "JRR", "Tolkien", None))
+      authors.insert(new author(2, "Jane", "Austen", None))
+      authors.insert(new author(3, "Philip", "Pullman", None))
+      authors.insert(new author(4, "Test", "Author", None))
 
-      books.insert(new Book(1, "The Lord of the Rings", 1, None))
-      books.insert(new Book(2, "Pride and Prejudice", 2, None))
-      books.insert(new Book(3, "His Dark Materials", 3, None))
-      books.insert(new Book(4, "Test Book", 4, None))
+      books.insert(new book(1, "The Lord of the Rings", 1, None))
+      books.insert(new book(2, "Pride and Prejudice", 2, None))
+      books.insert(new book(3, "His Dark Materials", 3, None))
+      books.insert(new book(4, "Test Book", 4, None))
     }
   }
 }
