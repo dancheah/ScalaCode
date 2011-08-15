@@ -57,11 +57,48 @@ class SquerylTest extends JUnitSuite {
   @Test
   def testSimpleSelect() {
     inTransaction {
-      import com.dancheah.db.SquerylTestSchema._
+      import SquerylTestSchema._
 
       def allAuthors = from(authors) (s => select(s))
 
       assert(allAuthors.size == 4)
     }
   }
+
+  @Test
+  def testLookup() {
+    inTransaction {
+      import SquerylTestSchema._
+
+      val lookupAuthor = authors.lookup(1L)
+
+      lookupAuthor match {
+        case Some(author) => {
+          assert(author.firstName == "JRR")
+        }
+        case None => {
+          fail("Should have found an author")
+        }
+      }
+    }
+  }
+
+  /*
+  def testSingle() {
+    inTransaction {
+      import SquerylTestSchema._
+
+      val lookupAuthor = authors.where(a => a.id == 1).single
+
+      lookupAuthor match {
+        case Some(author) => {
+          assert(author.firstName === "JRR")
+        }
+        case None => {
+          fail("Should have found an author")
+        }
+      }
+    }
+  }
+  */
 }
