@@ -6,3 +6,5 @@ project/boot
 project/plugins/target
 target
 *.db
+.project
+.classpath
