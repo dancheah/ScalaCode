@@ -28,10 +28,10 @@ seq(webSettings :_*)
 resolvers ++= Seq(
   "Nexus Scala Tools Repository" at "http://nexus.scala-tools.org/content/repositories/releases/",
   "Scala Tools Snapshots" at "http://scala-tools.org/repo-snapshots/",
-  "Typesafe Repository" at "http://repo.typesafe.com/typesafe/releases"
+  "Typesafe Repository" at "http://repo.typesafe.com/typesafe/releases",
+  "Sonatype OSS Snapshots" at "http://oss.sonatype.org/content/repositories/snapshots/"
 )
 
-//resolvers += "Sonatype OSS Snapshots" at "http://oss.sonatype.org/content/repositories/snapshots/"
 
 // Testing Libraries
 libraryDependencies ++= Seq(
