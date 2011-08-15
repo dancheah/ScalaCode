@@ -1,4 +1,4 @@
-package q99
+package com.dancheah.questions99
 
 object P1 {
     def last(l: List[Int]): Int = {

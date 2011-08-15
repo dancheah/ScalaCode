@@ -1,4 +1,4 @@
-package q99
+package com.dancheah.questions99
 
 object P4 {
     // This is a very lispish style
