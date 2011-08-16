@@ -6,6 +6,7 @@ import org.squeryl.Session
 import org.squeryl.PrimitiveTypeMode._
 import org.junit.Test
 import org.junit.Before
+import org.junit.Assert._
 import org.squeryl.adapters.{PostgreSqlAdapter, H2Adapter}
 
 /**
@@ -83,22 +84,45 @@ class SquerylTest extends JUnitSuite {
     }
   }
 
-  /*
+  @Test
   def testSingle() {
     inTransaction {
       import SquerylTestSchema._
 
-      val lookupAuthor = authors.where(a => a.id == 1).single
+      val lookupAuthor = authors.where(a => a.id === 1).single
 
-      lookupAuthor match {
-        case Some(author) => {
-          assert(author.firstName === "JRR")
-        }
-        case None => {
-          fail("Should have found an author")
+      assert(lookupAuthor.firstName == "JRR")
+    }
+  }
+  
+  @Test
+  def testWithoutSingle() {
+    inTransaction {
+      import SquerylTestSchema._
+      
+      val lookupAuthor = authors.where(a => a.id == 1)
+      
+      assert(lookupAuthor.size == 1)
+      
+      for (a <- lookupAuthor) {
+        assert(a.firstName == "JRR")
+      }
+    }
+  }
+  
+  @Test
+  def testSingleNotFound() {
+    inTransaction {
+      import SquerylTestSchema._
+
+      try {
+          val lookupAuthor = authors.where(a => a.id === 5).single
+          fail("Expected an exception to be thrown")
+      } catch {
+        case e:RuntimeException => {
+            // don't fail. this is correct behavior
         }
       }
     }
   }
-  */
 }
