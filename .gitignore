@@ -8,3 +8,4 @@ target
 *.db
 .project
 .classpath
+.scala_dependencies
