@@ -4,10 +4,10 @@ version := "1.0"
 
 organization := "com.dancheah"
 
-scalaVersion := "2.9.0-1"
+scalaVersion := "2.9.1.RC4"
 
 // disable updating dynamic revisions (including -SNAPSHOT versions)
-offline := true
+// offline := true
 
 // fork a new JVM for 'run' and 'test:run'
 fork := true
@@ -37,7 +37,8 @@ resolvers ++= Seq(
 libraryDependencies ++= Seq(
   "junit" % "junit" % "4.8" % "test",
   "org.scalatest" % "scalatest_2.9.0" % "1.6.1" % "test",
-  "org.scala-tools.testing" % "scalacheck_2.9.0" % "1.9" % "test"
+  "org.scala-tools.testing" % "scalacheck_2.9.0" % "1.9" % "test",
+  "org.specs2" %% "specs2" % "1.5" % "test"
 )
 
 // Databases, ORM
@@ -51,8 +52,8 @@ libraryDependencies ++= Seq(
 
 // Scalatra
 libraryDependencies ++= Seq(
-  "org.scalatra" % "scalatra_2.9.0" % "2.0.0.M4",
-  "org.scalatra" % "scalatra-scalate_2.9.0" % "2.0.0.M4",
+  "org.scalatra" % "scalatra_2.9.0" % "2.0.0-SNAPSHOT",
+  "org.scalatra" % "scalatra-scalate_2.9.0" % "2.0.0-SNAPSHOT",
   "javax.servlet" % "servlet-api" % "2.5" % "provided"
 )
 
