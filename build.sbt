@@ -47,7 +47,8 @@ libraryDependencies ++= Seq(
   "com.h2database" % "h2" % "1.3.159",
   "postgresql" % "postgresql" % "9.0-801.jdbc4",
   "redis.clients" % "jedis" % "2.0.0" % "compile",
-  "org.squeryl" % "squeryl_2.9.0-1" % "0.9.4"
+  "org.squeryl" % "squeryl_2.9.0-1" % "0.9.4",
+  "org.neo4j" % "neo4j" % "1.4.1"
 )
 
 // Scalatra
