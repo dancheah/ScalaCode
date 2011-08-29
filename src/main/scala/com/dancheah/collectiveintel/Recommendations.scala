@@ -1,6 +1,10 @@
-package com.dancheah.collectiveintel
+//package com.dancheah.collectiveintel
 
+import scala.collection.mutable.HashSet
 import net.liftweb.json._
+import scala.math.sqrt
+import scala.math.pow
+import scala.collection.mutable.HashMap
 
 /**
  * User: dc
@@ -66,6 +70,27 @@ object Recommendations {
   // Useful examples on using lift-json can be found here. It's different from the python api
   // https://github.com/lift/lift/tree/master/framework/lift-base/lift-json/src/test/scala/net/liftweb/json
   val critics = JsonParser.parse(raw_json)
+
+  def sim_distance(prefs:JValue, person1:String, person2:String) = {
+    // Get the list of shared items
+    val l1 = for {
+      JObject(list) <- prefs \ person1
+      JField(key, JDouble(_)) <- list
+    } yield key
+
+    val l2 = for {
+      JObject(list) <- prefs \ person2
+      JField(key, JDouble(_)) <- list
+    } yield key
+
+    val l3 = l1 intersect l2
+
+    // if they have no ratings in common, return 0
+
+    // Add up the squares of all the differences
+
+    l3
+  }
 
   // Running in the repl
   /*
