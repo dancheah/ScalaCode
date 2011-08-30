@@ -72,34 +72,30 @@ object Recommendations {
   val critics = JsonParser.parse(raw_json)
 
   def sim_distance(prefs:JValue, person1:String, person2:String) = {
-    // Get the list of shared items
-    val l1 = for {
+    // Get the list of shared items between the two people
+    val l = (for {
       JObject(list) <- prefs \ person1
       JField(key, JDouble(_)) <- list
-    } yield key
-
-    val l2 = for {
+    } yield key)
+    .intersect(for {
       JObject(list) <- prefs \ person2
       JField(key, JDouble(_)) <- list
-    } yield key
-
-    val l3 = l1 intersect l2
+    } yield key)
     
-    val ret = if (l3.length == 0) {
+    if (l.length == 0) {
       0
-    } else {    
-      val l = for {
-          item <- l3
+    } else {
+      // Calculate the sum of squares
+      val sum_of_squares = (for {
+          item <- l
           JDouble(score1) <- prefs \ person1 \ item
           JDouble(score2) <- prefs \ person2 \ item
-      } yield score1 - score2
-    
-      val sum_of_squares = l.map(pow(_, 2)).fold(0.0) {  _ + _ }
+      } yield score1 - score2)
+      .map(pow(_, 2))
+      .fold(0.0) { _ + _ }
     
       1 / (1 + sum_of_squares)
     }
-    
-    ret
   }
 
   // Running in the repl
@@ -115,5 +111,8 @@ res6: net.liftweb.json.JsonAST.JValue = JObject(List(JField(Snakes on a Plane,JD
 
 scala> Recommendations.critics \ "Toby" \ "Star Wards"
 res7: net.liftweb.json.JsonAST.JValue = JNothing
+
+scala> Recommendations.sim_distance(Recommendations.critics, "Lisa Rose", "Gene Seymour")
+res16: Double = 0.14814814814814814    
     */
 }
