@@ -84,12 +84,22 @@ object Recommendations {
     } yield key
 
     val l3 = l1 intersect l2
-
-    // if they have no ratings in common, return 0
-
-    // Add up the squares of all the differences
-
-    l3
+    
+    val ret = if (l3.length == 0) {
+      0
+    } else {    
+      val l = for {
+          item <- l3
+          JDouble(score1) <- prefs \ person1 \ item
+          JDouble(score2) <- prefs \ person2 \ item
+      } yield score1 - score2
+    
+      val sum_of_squares = l.map(pow(_, 2)).fold(0.0) {  _ + _ }
+    
+      1 / (1 + sum_of_squares)
+    }
+    
+    ret
   }
 
   // Running in the repl
