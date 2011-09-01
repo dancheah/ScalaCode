@@ -4,7 +4,7 @@ version := "1.0"
 
 organization := "com.dancheah"
 
-scalaVersion := "2.9.1.RC4"
+scalaVersion := "2.9.1"
 
 // disable updating dynamic revisions (including -SNAPSHOT versions)
 // offline := true
