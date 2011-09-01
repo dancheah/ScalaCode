@@ -9,3 +9,5 @@ target
 .project
 .classpath
 .scala_dependencies
+indexdir
+datadir
