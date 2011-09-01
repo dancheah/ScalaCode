@@ -70,17 +70,20 @@ object Recommendations {
   // Useful examples on using lift-json can be found here. It's different from the python api
   // https://github.com/lift/lift/tree/master/framework/lift-base/lift-json/src/test/scala/net/liftweb/json
   val critics = JsonParser.parse(raw_json)
-
-  def sim_distance(prefs:JValue, person1:String, person2:String) = {
-    // Get the list of shared items between the two people
-    val l = (for {
+  
+  def intersect_list(prefs:JValue, person1:String, person2:String) = 
+    (for {
       JObject(list) <- prefs \ person1
       JField(key, JDouble(_)) <- list
     } yield key)
     .intersect(for {
       JObject(list) <- prefs \ person2
       JField(key, JDouble(_)) <- list
-    } yield key)
+    } yield key) 
+
+  def sim_distance(prefs:JValue, person1:String, person2:String) = {
+    // Get the list of shared items between the two people
+    val l = intersect_list(prefs, person1, person2)
     
     if (l.length == 0) {
       0
@@ -91,10 +94,41 @@ object Recommendations {
           JDouble(score1) <- prefs \ person1 \ item
           JDouble(score2) <- prefs \ person2 \ item
       } yield score1 - score2)
-      .map(pow(_, 2))
-      .fold(0.0) { _ + _ }
+      .map(pow(_, 2)).sum
     
       1 / (1 + sum_of_squares)
+    }
+  }
+  
+  def sim_pearson(prefs:JValue, person1:String, person2:String) = {
+    val l = intersect_list(prefs, person1, person2)
+    val n = l.length
+    
+    if (n == 0) {
+      0
+    } else {
+      val l1 = for { it <- l
+                   JDouble(x) <- prefs \ person1 \ it          
+                 } yield x
+                 
+      val l2 = for { it <- l
+                   JDouble(x) <- prefs \ person2 \ it
+                 } yield x
+                 
+      val sum1 = l1.sum
+      val sum2 = l2.sum
+      val sum1sq = l1.map(pow(_, 2)).sum
+      val sum2sq = l2.map(pow(_, 2)).sum    
+      val psum = l1.zip(l2).map({ x => x._1 * x._2}).sum
+    
+      val num = psum - (sum1 * sum2 / n)     
+      val den = sqrt((sum1sq - pow(sum1, 2)/n) * (sum2sq - pow(sum2, 2)/n))
+      
+      if (den == 0) {
+        0
+      } else {
+        num / den
+      }
     }
   }
 

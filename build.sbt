@@ -69,7 +69,8 @@ libraryDependencies ++= Seq(
   "org.scalaz" % "scalaz-core_2.9.0-1" % "6.0.1",
   "org.apache.lucene" % "lucene-core" % "3.3.0",
   "org.apache.mahout" % "mahout-core" % "0.5",
-  "net.liftweb" % "lift-json_2.9.0" % "2.4-M1"
+  "net.liftweb" % "lift-json_2.9.0" % "2.4-M1",
+  "org.clapper" %% "grizzled-scala" % "1.0.8"
 )
 
 // vim: sts=4 sw=4 ts=4 et ft=scala
