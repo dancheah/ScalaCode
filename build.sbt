@@ -63,6 +63,12 @@ libraryDependencies ++= Seq(
   "org.eclipse.jetty" % "jetty-webapp" % "7.4.5.v20110725" % "jetty"
 )
 
+// Cloud Libraries
+libraryDependencies ++= Seq(
+  "org.jclouds" % "jclouds-allcompute" % "1.1.1",
+  "org.jclouds" % "jclouds-allblobstore" % "1.1.1"
+)
+
 // Misc Libs
 libraryDependencies ++= Seq(
   "se.scalablesolutions.akka" % "akka-actor" % "1.1.3",

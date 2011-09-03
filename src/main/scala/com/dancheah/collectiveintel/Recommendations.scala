@@ -131,6 +131,23 @@ object Recommendations {
       }
     }
   }
+  
+  def topMatches(prefs:JValue, person:String, 
+                 n:Integer = 5, 
+                 similarity: (JValue, String, String) => Double = sim_pearson) = { 
+        prefs.children
+            .filterNot(_ match {
+                    case JField(name, _) => name == person
+                    case _ => throw new IllegalStateException("impossible")
+            }) 
+            .map(_ match {
+                case JField(name, _) => (name, similarity(prefs, person, name))
+                case _ => throw new IllegalStateException("impossible")
+            })
+            .sort((x,y) => x._2 < y._2)
+            .reverse
+            .take(n)
+  }
 
   // Running in the repl
   /*
