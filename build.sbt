@@ -37,8 +37,8 @@ resolvers ++= Seq(
 // Testing Libraries
 libraryDependencies ++= Seq(
   "junit" % "junit" % "4.8" % "test",
-  "org.scalatest" % "scalatest_2.9.0" % "1.6.1" % "test",
-  "org.scala-tools.testing" % "scalacheck_2.9.0" % "1.9" % "test",
+  "org.scalatest" %% "scalatest" % "1.6.1" % "test",
+  "org.scala-tools.testing" %% "scalacheck" % "1.9" % "test",
   "org.specs2" %% "specs2" % "1.5" % "test"
 )
 
@@ -54,8 +54,8 @@ libraryDependencies ++= Seq(
 
 // Scalatra
 libraryDependencies ++= Seq(
-  "org.scalatra" % "scalatra_2.9.0" % "2.0.0-SNAPSHOT",
-  "org.scalatra" % "scalatra-scalate_2.9.0" % "2.0.0-SNAPSHOT",
+  "org.scalatra" %% "scalatra" % "2.0.0",
+  "org.scalatra" %% "scalatra-scalate" % "2.0.0",
   "javax.servlet" % "servlet-api" % "2.5" % "provided"
 )
 
@@ -68,7 +68,7 @@ libraryDependencies ++= Seq(
 libraryDependencies ++= Seq(
    "net.databinder" %% "unfiltered-filter" % "0.4.1",
    "net.databinder" %% "unfiltered-jetty" % "0.4.1",
-   "org.clapper" %% "avsl" % "0.3.5"
+   "org.clapper" %% "avsl" % "0.3.6"
 )
 
 // Misc Libs
