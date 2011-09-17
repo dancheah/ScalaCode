@@ -29,15 +29,16 @@ resolvers ++= Seq(
   "Nexus Scala Tools Repository" at "http://nexus.scala-tools.org/content/repositories/releases/",
   "Scala Tools Snapshots" at "http://scala-tools.org/repo-snapshots/",
   "Typesafe Repository" at "http://repo.typesafe.com/typesafe/releases",
-  "Sonatype OSS Snapshots" at "http://oss.sonatype.org/content/repositories/snapshots/"
+  "Sonatype OSS Snapshots" at "http://oss.sonatype.org/content/repositories/snapshots/",
+  "java m2" at "http://download.java.net/maven/2"
 )
 
 
 // Testing Libraries
 libraryDependencies ++= Seq(
   "junit" % "junit" % "4.8" % "test",
-  "org.scalatest" % "scalatest_2.9.0" % "1.6.1" % "test",
-  "org.scala-tools.testing" % "scalacheck_2.9.0" % "1.9" % "test",
+  "org.scalatest" %% "scalatest" % "1.6.1" % "test",
+  "org.scala-tools.testing" %% "scalacheck" % "1.9" % "test",
   "org.specs2" %% "specs2" % "1.5" % "test"
 )
 
@@ -53,8 +54,8 @@ libraryDependencies ++= Seq(
 
 // Scalatra
 libraryDependencies ++= Seq(
-  "org.scalatra" % "scalatra_2.9.0" % "2.0.0-SNAPSHOT",
-  "org.scalatra" % "scalatra-scalate_2.9.0" % "2.0.0-SNAPSHOT",
+  "org.scalatra" %% "scalatra" % "2.0.0",
+  "org.scalatra" %% "scalatra-scalate" % "2.0.0",
   "javax.servlet" % "servlet-api" % "2.5" % "provided"
 )
 
@@ -69,6 +70,13 @@ libraryDependencies ++= Seq(
   "org.jclouds" % "jclouds-allblobstore" % "1.1.1"
 )
 
+// Unfiltered
+libraryDependencies ++= Seq(
+   "net.databinder" %% "unfiltered-filter" % "0.4.1",
+   "net.databinder" %% "unfiltered-jetty" % "0.4.1",
+   "org.clapper" %% "avsl" % "0.3.6"
+)
+
 // Misc Libs
 libraryDependencies ++= Seq(
   "se.scalablesolutions.akka" % "akka-actor" % "1.1.3",
@@ -76,7 +84,9 @@ libraryDependencies ++= Seq(
   "org.apache.lucene" % "lucene-core" % "3.3.0",
   "org.apache.mahout" % "mahout-core" % "0.5",
   "net.liftweb" % "lift-json_2.9.0" % "2.4-M1",
-  "org.clapper" %% "grizzled-scala" % "1.0.8"
+  "org.clapper" %% "grizzled-scala" % "1.0.8",
+  "net.databinder" %% "dispatch-http" % "0.8.5",
+  "commons-logging" % "commons-logging" % "1.1.1" % "compile"
 )
 
 // vim: sts=4 sw=4 ts=4 et ft=scala
