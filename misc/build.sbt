@@ -77,15 +77,20 @@ libraryDependencies ++= Seq(
    "org.clapper" %% "avsl" % "0.3.6"
 )
 
-// Misc Libs
+// Misc Scala Libs
 libraryDependencies ++= Seq(
-  "se.scalablesolutions.akka" % "akka-actor" % "1.1.3",
-  "org.scalaz" % "scalaz-core_2.9.0-1" % "6.0.1",
-  "org.apache.lucene" % "lucene-core" % "3.3.0",
-  "org.apache.mahout" % "mahout-core" % "0.5",
-  "net.liftweb" % "lift-json_2.9.0" % "2.4-M1",
   "org.clapper" %% "grizzled-scala" % "1.0.8",
   "net.databinder" %% "dispatch-http" % "0.8.5",
+  "se.scalablesolutions.akka" % "akka-actor" % "1.1.3",
+  "org.scalaz" %% "scalaz-core" % "6.0.3",
+  "net.liftweb" %% "lift-json" % "2.4-SNAPSHOT",
+  "com.github.jsuereth.scala-arm" %% "scala-arm" % "0.3"
+)
+
+// Misc Java Libs
+libraryDependencies ++= Seq(
+  "org.apache.lucene" % "lucene-core" % "3.3.0",
+  "org.apache.mahout" % "mahout-core" % "0.5",
   "commons-logging" % "commons-logging" % "1.1.1" % "compile"
 )
 
