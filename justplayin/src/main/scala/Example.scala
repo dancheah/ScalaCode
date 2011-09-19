@@ -1,4 +1,4 @@
-package com.example
+package com.dancheah
 
 import unfiltered.request._
 import unfiltered.response._
@@ -14,7 +14,7 @@ class App extends unfiltered.filter.Plan {
   def intent = {
     case GET(Path(p)) =>
       logger.debug("GET %s" format p)
-      Ok ~> view(Map.empty)(<p> What say you? </p>)
+      Ok ~> view(Map.empty)(<p> What say you brown cow? </p>)
     case POST(Path(p) & Params(params)) =>
       logger.debug("POST %s" format p)
       val vw = view(params)_

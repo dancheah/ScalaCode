@@ -1,4 +1,4 @@
-package com.example
+package com.dancheah
 
 import org.specs._
 
