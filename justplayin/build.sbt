@@ -14,6 +14,7 @@ libraryDependencies ++= Seq(
    "net.databinder" %% "unfiltered-filter" % "0.5.0",
    "net.databinder" %% "unfiltered-jetty" % "0.5.0",
    "net.databinder" %% "unfiltered-json" % "0.5.0",
+   "net.databinder" %% "unfiltered-spec" % "0.5.0",
    "org.clapper" %% "avsl" % "0.3.6"
 )
 
