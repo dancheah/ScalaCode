@@ -3,20 +3,24 @@ package com.dancheah
 import unfiltered.request._
 import unfiltered.response._
 
+import net.liftweb.json.JsonDSL._
+import net.liftweb.json.JsonParser._
+
 import org.clapper.avsl.Logger
 
 /** unfiltered plan */
 class App extends unfiltered.filter.Plan {
+  //import QParams.{lookup,int,required}
   import QParams._
 
   val logger = Logger(classOf[App])
 
   def intent = {
-    case GET(Path(p)) =>
-      logger.debug("GET %s" format p)
+    case GET(Path("/form")) =>
+      logger.debug("GET /form")
       Ok ~> view(Map.empty)(<p> What say you brown cow? </p>)
-    case POST(Path(p) & Params(params)) =>
-      logger.debug("POST %s" format p)
+    case POST(Path("/form") & Params(params)) =>
+      logger.debug("POST /form")
       val vw = view(params)_
       val expected = for {
         int <- lookup("int") is
@@ -31,6 +35,10 @@ class App extends unfiltered.filter.Plan {
       expected(params) orFail { fails =>
         vw(<ul> { fails.map { f => <li>{f.error} </li> } } </ul>)
       }
+    case GET(Path("/json")) =>
+      Json("this is a json string")
+    case _ =>
+      ResponseString("Hello Default Case")
   }
   def palindrome(s: String) = s.toLowerCase.reverse == s.toLowerCase
   def view(params: Map[String, Seq[String]])(body: scala.xml.NodeSeq) = {
