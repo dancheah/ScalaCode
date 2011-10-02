@@ -1,0 +1,5 @@
+Really simple http frontend to Redis. Trying out unfiltered + redis. Uses the Netty embedded server but doesn't take any advantage of its capabilities.
+
+Sample URLs
+GET /redis/foobar
+POST /redis/foobar

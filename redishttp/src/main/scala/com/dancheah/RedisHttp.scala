@@ -22,9 +22,9 @@ object RedisHttp extends cycle.Plan
           case Some(value) => ResponseString(value)
           case None => ResponseString("Not found")
         }
-      case POST(_) & Params(params) =>
+      case POST(_) =>
         logger.debug("POST /redis/" + id)
-        val payload = params.get("payload").flatMap { _.headOption } getOrElse("")
+        val payload = Body.bytes(req)  
         val result = redis.set(id, payload)
         result match {
           case true => ResponseString("OK")
