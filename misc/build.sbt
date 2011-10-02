@@ -1,3 +1,5 @@
+import AssemblyKeys._
+
 name := "My Project"
 
 version := "1.0"
@@ -19,10 +21,13 @@ fork := true
 retrieveManaged := true
 
 // Include Assembly Commands
-seq(sbtassembly.Plugin.assemblySettings: _*)
+seq(assemblySettings: _*)
 
 // Include Web Commands
 seq(webSettings :_*)
+
+// Include JRebel Commands
+seq(jrebelSettings: _*)
 
 // Repositories to Include
 resolvers ++= Seq(
@@ -32,7 +37,6 @@ resolvers ++= Seq(
   "Sonatype OSS Snapshots" at "http://oss.sonatype.org/content/repositories/snapshots/",
   "java m2" at "http://download.java.net/maven/2"
 )
-
 
 // Testing Libraries
 libraryDependencies ++= Seq(
@@ -61,7 +65,8 @@ libraryDependencies ++= Seq(
 
 // Jetty 
 libraryDependencies ++= Seq(
-  "org.eclipse.jetty" % "jetty-webapp" % "7.4.5.v20110725" % "jetty"
+  //"org.eclipse.jetty" % "jetty-webapp" % "7.4.5.v20110725" % "jetty"
+  "org.eclipse.jetty" % "jetty-webapp" % "8.0.1.v20110908"
 )
 
 // Cloud Libraries

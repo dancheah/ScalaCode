@@ -13,3 +13,4 @@ indexdir
 datadir
 *.lock
 *.log
+.ensime
